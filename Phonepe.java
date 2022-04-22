@@ -163,34 +163,49 @@ class B{
 	        int ch = sc.nextInt();
 	        if(ch==0)
 	        {
-	        	PreparedStatement ps = con.prepareStatement("update account set balance = balance + ? where account=?");
 	        	Scanner sc1 = new Scanner(System.in);
 	        	System.out.println("Enter the account number to which the money is to be transfered");
 	        	account = sc1.nextLong();
 	        	System.out.println("Enter the amount to be transfered");
 	        	balance = sc1.nextLong();
-	        	ps.setLong(1, balance);
-	        	ps.setLong(2, account);
-	        	ps.execute();
-	        	PreparedStatement ps2 = con.prepareStatement("update account set balance = balance - ? where id=1");
-	        	ps2.setLong(1, balance);
-	        	ps2.execute();
+			if (balance >=100 && balance<=25000)
+			{
+				PreparedStatement ps = con.prepareStatement("update account set balance = balance + ? where account=?");
+				ps.setLong(1, balance);
+	        		ps.setLong(2, account);
+	        		ps.execute();
+	        		PreparedStatement ps2 = con.prepareStatement("update account set balance = balance - ? where id=1");
+	        		ps2.setLong(1, balance);
+	        		ps2.execute();
+			}
+			else{
+				System.out.println("Amount is not in the range from 100 to 25000");
+			}
+	        	
 	        	
 	        }
 	        if(ch==1)
 	        {
-	        	PreparedStatement ps = con.prepareStatement("update account set balance = balance + ? where phone=?");
 	        	Scanner sc1 = new Scanner(System.in);
 	        	System.out.println("Enter the phone number to which the money is to be transfered");
 	        	phone = sc1.nextLong();
 	        	System.out.println("Enter the amount to be transfered");
 	        	balance = sc1.nextLong();
-	        	ps.setLong(1, balance);
-	        	ps.setLong(2, phone);
-	        	ps.execute();
-	        	PreparedStatement ps2 = con.prepareStatement("update account set balance = balance - ? where id=1");
-	        	ps2.setLong(1, balance);
-	        	ps2.execute();
+			if(balance>=100 && balance <=25000)
+			{
+				PreparedStatement ps = con.prepareStatement("update account set balance = balance + ? where phone=?");
+				ps.setLong(1, balance);
+	        		ps.setLong(2, phone);
+	        		ps.execute();
+	        		PreparedStatement ps2 = con.prepareStatement("update account set balance = balance - ? where id=1");
+	        		ps2.setLong(1, balance);
+	        		ps2.execute();
+			}
+			else
+			{
+				System.out.println("Amount is not in the range from 100 to 25000");
+			}
+	        	
 	        	
 	        }
 		}
